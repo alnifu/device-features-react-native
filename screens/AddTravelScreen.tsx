@@ -41,10 +41,15 @@ export default function AddTravelScreen({ navigation }: any) {
       const { status: locationStatus } = await Location.requestForegroundPermissionsAsync();
       setHasLocationPermission(locationStatus === 'granted');
 
-     
       await registerForPushNotificationsAsync();
     })();
-  }, []);
+
+    const unsubscribe = navigation.addListener('focus', () => {
+      clearPhoto();
+    });
+
+    return unsubscribe;
+  }, [navigation]);
 
   const registerForPushNotificationsAsync = async () => {
     if (Platform.OS === 'android') {
@@ -149,9 +154,9 @@ export default function AddTravelScreen({ navigation }: any) {
       location: loc || undefined,
       liked: false,
     };
-
+  
     await saveEntry(newEntry);
-
+  
     await Notifications.scheduleNotificationAsync({
       content: {
         title: 'Travel Entry Saved',
@@ -159,10 +164,14 @@ export default function AddTravelScreen({ navigation }: any) {
       },
       trigger: null, 
     });
-
-    navigation.navigate('Home');
+  
+    setPhotoUri(null);
+    setLocation(null);
+  
+    setTimeout(() => {
+      navigation.navigate('Home');
+    }, 500); 
   };
-
   const clearPhoto = () => {
     setPhotoUri(null);
     setLocation(null);
