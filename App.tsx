@@ -1,4 +1,3 @@
-// App.tsx
 import React, { useEffect } from 'react';
 import { Alert, Platform, StatusBar } from 'react-native';
 import * as Notifications from 'expo-notifications';
@@ -8,11 +7,10 @@ import BottomTabNavigator from './navigation/BottomTabNavigator';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 
 function AppContent() {
-  const { darkMode } = useTheme(); // Access theme context
+  const { darkMode } = useTheme();
 
   return (
     <>
-      {/* Update the StatusBar based on theme */}
       <StatusBar
         barStyle={darkMode ? 'light-content' : 'dark-content'}
         backgroundColor="transparent"

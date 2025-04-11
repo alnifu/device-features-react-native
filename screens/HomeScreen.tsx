@@ -143,8 +143,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingHorizontal: 16,
-        paddingBottom: 16,
+        paddingBottom: 20,
         backgroundColor: 'transparent',
     },
     emptyContainer: {
@@ -160,16 +159,16 @@ const styles = StyleSheet.create({
         position: 'relative',
     },
     image: {
-        width: '100%', // Make sure the image spans the full width of the screen
+        width: '100%', 
         height: 500,
-        resizeMode: 'cover', // Ensure the image maintains its aspect ratio while covering the width
+        resizeMode: 'cover',
     },
     deleteButton: {
         position: 'absolute',
         top: 10,
         right: 10,
         padding: 6,
-        backgroundColor: 'transparent', // Remove the background circle
+        backgroundColor: 'transparent',
     },
     actions: {
         flexDirection: 'row',

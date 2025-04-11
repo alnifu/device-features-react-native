@@ -9,7 +9,7 @@ import { useTheme } from '../context/ThemeContext';
 const Tab = createBottomTabNavigator();
 
 export default function BottomTabNavigator() {
-  const { darkMode } = useTheme();  // Get dark mode from the theme context
+  const { darkMode } = useTheme();  
 
   return (
     <Tab.Navigator
@@ -27,7 +27,6 @@ export default function BottomTabNavigator() {
           return <Ionicons name={iconName} size={size} color={color} />;
         },
         tabBarLabel: ({ focused }) => {
-          // Conditionally render the text based on whether the tab is focused
           return (
             <Text style={{
               color: darkMode ? (focused ? '#fff' : '#aaa') : (focused ? '#000' : '#666'),
@@ -39,16 +38,16 @@ export default function BottomTabNavigator() {
           );
         },
         tabBarStyle: {
-          backgroundColor: darkMode ? '#222' : '#fff',  // Dark mode background
-          height: 70,  // Custom height for the tab bar
-          justifyContent: 'center',  // Center the icons
-          alignItems: 'center',  // Center the icons horizontally
+          backgroundColor: darkMode ? '#222' : '#fff',  
+          height: 70,  
+          justifyContent: 'center',  
+          alignItems: 'center', 
         },
         tabBarLabelStyle: {
-          fontSize: 12,  // Text size for the label
-          marginTop: 5,  // Space between the icon and label
+          fontSize: 12,  
+          marginTop: 5,  
         },
-        tabBarShowLabel: true,  // Show the label under the icon
+        tabBarShowLabel: true, 
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen} />

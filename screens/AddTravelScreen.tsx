@@ -7,7 +7,6 @@ import {
   Image,
   Alert,
   ActivityIndicator,
-  Switch,
   Platform,
   StatusBar,
 } from 'react-native';
@@ -20,19 +19,18 @@ import { Ionicons } from '@expo/vector-icons';
 import { saveEntry } from '../utils/storage';
 import { TravelEntry } from '../types';
 import uuid from 'react-native-uuid';
-import { useTheme } from '../context/ThemeContext'; // Import the theme context
+import { useTheme } from '../context/ThemeContext'; 
 
-// Set global notification handler
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
-    shouldPlaySound: false,
+    shouldPlaySound: true,
     shouldSetBadge: false,
   }),
 });
 
 export default function AddTravelScreen({ navigation }: any) {
-  const { darkMode, toggleDarkMode } = useTheme(); // Access theme context
+  const { darkMode, toggleDarkMode } = useTheme(); 
   const [hasLocationPermission, setHasLocationPermission] = useState(false);
   const [photoUri, setPhotoUri] = useState<string | null>(null);
   const [location, setLocation] = useState<string | null>(null);
@@ -43,7 +41,7 @@ export default function AddTravelScreen({ navigation }: any) {
       const { status: locationStatus } = await Location.requestForegroundPermissionsAsync();
       setHasLocationPermission(locationStatus === 'granted');
 
-      // Register for push notifications
+     
       await registerForPushNotificationsAsync();
     })();
   }, []);
@@ -154,13 +152,12 @@ export default function AddTravelScreen({ navigation }: any) {
 
     await saveEntry(newEntry);
 
-    // Trigger local notification
     await Notifications.scheduleNotificationAsync({
       content: {
         title: 'Travel Entry Saved',
         body: 'Your travel memory has been saved successfully.',
       },
-      trigger: null, // Fire immediately
+      trigger: null, 
     });
 
     navigation.navigate('Home');
@@ -252,8 +249,6 @@ const styles = StyleSheet.create({
   topBar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    paddingBottom: 16,
     alignItems: 'center',
   },
   title: {
